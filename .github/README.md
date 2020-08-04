@@ -4,7 +4,7 @@
 
 This repository holds my logs centralisation tool, which is based on [SEQ by Datalust](https://datalust.co/).
 It is a docker stack, and is continuous deployed to my private docker swarm.
-This repository has been a good opportunity to setup TLS authentification and using my [Docker Stack deploymeny Github action](https://github.com/ArwynFr/actions-deploy-stack).
+This repository has been a good opportunity to setup TLS authentification and using my [Docker Stack deployment Github action](https://github.com/ArwynFr/actions-deploy-stack).
 
 ## Rules and standards
 
