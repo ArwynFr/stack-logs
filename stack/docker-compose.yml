@@ -8,7 +8,7 @@ networks:
 
 secrets:
   apikey:
-    file: /var/lib/secrets/seq_api_key
+    file: ${HOME}/.secrets/seq_api_key
 
 volumes:
   data:

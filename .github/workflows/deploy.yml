@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  cd:
+  deploy:
     runs-on: ubuntu-latest
     steps:
 
@@ -19,17 +19,24 @@ jobs:
           registry: docker.pkg.github.com
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
-          repository: ${{ github.repository }}
+          repository: arwynfr/stack-logs/gelf
           tag_with_ref: true
           tag_with_sha: true
+          tags: master
           path: ./src
 
       - name: Deploy stack
-        uses: arwynfr/actions-deploy-stack@develop
-        with:
-          stack_name: logs
-          stack_file: ./stack/docker-compose.yml
-          docker_cacert: ${{ secrets.DOCKER_CACERT }}
-          docker_cert: ${{ secrets.DOCKER_CERT }}
-          docker_key: ${{ secrets.DOCKER_KEY }}
-          docker_host: ${{ secrets.HOSTNAME }}
+        env:
+          SEQ_API_KEY: ${{ secrets. SEQ_API_KEY }}
+          DOCKER_CACERT: ${{ secrets.DOCKER_CACERT }}
+          DOCKER_CERT: ${{ secrets.DOCKER_CERT }}
+          DOCKER_KEY: ${{ secrets.DOCKER_KEY }}
+          DOCKER_HOST: ${{ secrets.DOCKER_HOST }}
+          DOCKER_TLS_VERIFY: 1
+        run: |
+          mkdir --parents ~/.docker $HOME/.secrets
+          echo "$DOCKER_CACERT" > ~/.docker/ca.pem
+          echo "$DOCKER_CERT" > ~/.docker/cert.pem
+          echo "$DOCKER_KEY" > ~/.docker/key.pem
+          echo "$SEQ_API_KEY" > $HOME/.secrets/seq_api_key
+          docker stack deploy --prune --compose-file ./stack/docker-compose.yml logs
