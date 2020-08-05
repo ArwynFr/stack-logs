@@ -1,0 +1,2 @@
+# stack-logs
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5386896f9c6406eb90c7bd9621466a6)](https://app.codacy.com/manual/ArwynFr/stack-logs?utm_source=github.com&utm_medium=referral&utm_content=ArwynFr/stack-logs&utm_campaign=Badge_Grade_Dashboard)
