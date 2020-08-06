@@ -39,4 +39,5 @@ jobs:
           echo "$DOCKER_CERT" > ~/.docker/cert.pem
           echo "$DOCKER_KEY" > ~/.docker/key.pem
           echo "$SEQ_API_KEY" > $HOME/.secrets/seq_api_key
+          docker stack rm logs
           docker stack deploy --prune --compose-file ./stack/docker-compose.yml logs
