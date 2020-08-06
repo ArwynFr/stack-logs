@@ -3,8 +3,8 @@ version: "3.7"
 networks:
   reverse:
     external: true
-  ingress:
-    internal: false
+  logs:
+    external: true
 
 secrets:
   apikey:
@@ -37,19 +37,17 @@ services:
     image: datalust/seq:2020.1
     networks:
       - reverse
-    ports:
-      - 5341:5341
+      - logs
     volumes:
       - data:/data
 
   gelf:
     environment :
-      - SEQ_ADDRESS=https://seq.chezsquall.net:5341
+      - SEQ_ADDRESS=http://seq:5341
       - SEQ_API_KEY_FILE=/run/secrets/apikey
     image: docker.pkg.github.com/arwynfr/stack-logs/gelf:master
     networks:
-      - reverse
-      - ingress
+      - logs
     ports:
       - "12201:12201/udp"
     secrets:
