@@ -2,7 +2,7 @@ version: "3.8"
 
 secrets:
   apikey:
-    file: ${HOME}/.secrets/seq_api_key
+    file: /var/lib/secrets/seq_api_key
 
 services:
 
