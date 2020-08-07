@@ -31,5 +31,7 @@ services:
     image: datalust/seq:2020.1
     networks:
       - reverse
+    ports:
+      - 5341:5341
     volumes:
       - data:/data
